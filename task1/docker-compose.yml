@@ -1,0 +1,17 @@
+version: '3'
+services:
+  rabbitmq:
+    image: "rabbitmq"
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+  consumer:
+    build: consumer
+    restart: always
+    depends_on:
+     - rabbitmq
+  producer:
+    build: producer
+    restart: always
+    depends_on:
+     - rabbitmq
